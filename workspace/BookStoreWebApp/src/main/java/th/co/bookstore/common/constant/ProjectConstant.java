@@ -1,4 +1,4 @@
-package com.co.th.bookstore.common.constant;
+package th.co.bookstore.common.constant;
 
 public class ProjectConstant {
 

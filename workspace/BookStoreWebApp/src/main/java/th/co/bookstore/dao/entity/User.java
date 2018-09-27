@@ -1,4 +1,4 @@
-package com.co.th.bookstore.model;
+package th.co.bookstore.dao.entity;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.co.th.bookstore.config.db;
+package th.co.bookstore.config.db;
 
 import java.sql.SQLException;
 
@@ -21,14 +21,13 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.co.th.bookstore.common.constant.ProjectConstant.EntityFactoryRef;
-import com.co.th.bookstore.common.constant.ProjectConstant.JDBC_TEMPLATE;
-import com.co.th.bookstore.common.constant.ProjectConstant.TransactionManagerRef;
-import com.co.th.bookstore.model.User;
+import th.co.bookstore.common.constant.ProjectConstant.EntityFactoryRef;
+import th.co.bookstore.common.constant.ProjectConstant.JDBC_TEMPLATE;
+import th.co.bookstore.common.constant.ProjectConstant.TransactionManagerRef;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.co.th.bookstore.dao", entityManagerFactoryRef = EntityFactoryRef.MYSQL_DB, transactionManagerRef = TransactionManagerRef.MYSQl_DB)
+@EnableJpaRepositories(basePackages = "th.co.bookstore.dao", entityManagerFactoryRef = EntityFactoryRef.MYSQL_DB, transactionManagerRef = TransactionManagerRef.MYSQl_DB)
 public class DataAccessConfig {
 	
 	private static final Logger log = LoggerFactory.getLogger(DataAccessConfig.class);
@@ -58,7 +57,7 @@ public class DataAccessConfig {
 		return builder
 			.dataSource(dataSource())
 			.packages(
-				User.class
+				"th.co.bookstore.dao.entity"
 			)
 			.persistenceUnit("system")
 			.build();

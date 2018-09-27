@@ -1,9 +1,10 @@
-package com.co.th.bookstore.dao;
+package th.co.bookstore.dao;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.co.th.bookstore.model.User;
+import th.co.bookstore.dao.entity.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
+	User findByUsername(String username);
 }

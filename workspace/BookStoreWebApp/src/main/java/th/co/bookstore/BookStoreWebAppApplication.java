@@ -1,4 +1,4 @@
-package com.co.th.bookstore;
+package th.co.bookstore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 
 @SpringBootApplication
-@ComponentScan("com.co.th.bookstore")
+@ComponentScan("th.co.bookstore")
 @EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class})
 @PropertySources({
 	@PropertySource(value = "classpath:application.properties", ignoreResourceNotFound = true)
