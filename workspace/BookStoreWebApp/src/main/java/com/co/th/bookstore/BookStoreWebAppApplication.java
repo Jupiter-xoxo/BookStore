@@ -1,9 +1,19 @@
 package com.co.th.bookstore;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 
 @SpringBootApplication
+@ComponentScan("com.co.th.bookstore")
+@EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class})
+@PropertySources({
+	@PropertySource(value = "classpath:application.properties", ignoreResourceNotFound = true)
+})
 public class BookStoreWebAppApplication {
 
 	public static void main(String[] args) {
