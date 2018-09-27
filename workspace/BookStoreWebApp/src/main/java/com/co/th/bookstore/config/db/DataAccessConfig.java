@@ -22,6 +22,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.co.th.bookstore.common.constant.ProjectConstant.EntityFactoryRef;
+import com.co.th.bookstore.common.constant.ProjectConstant.JDBC_TEMPLATE;
 import com.co.th.bookstore.common.constant.ProjectConstant.TransactionManagerRef;
 import com.co.th.bookstore.model.User;
 
@@ -65,7 +66,7 @@ public class DataAccessConfig {
 	
 	@Primary
 	@Bean(name = TransactionManagerRef.MYSQl_DB)
-	public PlatformTransactionManager transactionManager(@Qualifier("entityManagerFactory") EntityManagerFactory  entityManagerFactory) throws IllegalArgumentException {
+	public PlatformTransactionManager transactionManager(@Qualifier(EntityFactoryRef.MYSQL_DB) EntityManagerFactory  entityManagerFactory) throws IllegalArgumentException {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(entityManagerFactory);
 		transactionManager.setDataSource(dataSource());
@@ -73,7 +74,7 @@ public class DataAccessConfig {
 	}
 	
 	@Primary
-	@Bean(name = "systemJdbcTemplate")
+	@Bean(name = JDBC_TEMPLATE.MYSQL_DB)
 	public JdbcTemplate systemJdbcTemplate() throws SQLException, IllegalArgumentException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource());
 		return jdbcTemplate;

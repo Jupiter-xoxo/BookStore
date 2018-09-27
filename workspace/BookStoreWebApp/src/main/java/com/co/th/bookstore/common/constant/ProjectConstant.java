@@ -7,6 +7,10 @@ public class ProjectConstant {
 	}
 	
 	public static class EntityFactoryRef {
-		public static final String MYSQL_DB = "ussdOracleEntityManagerFactory";
+		public static final String MYSQL_DB = "entityManagerFactory";
+	}
+	
+	public static class JDBC_TEMPLATE {
+		public static final String MYSQL_DB = "mysqlJdbcTemplate";
 	}
 }
