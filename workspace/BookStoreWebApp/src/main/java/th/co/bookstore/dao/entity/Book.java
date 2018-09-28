@@ -25,8 +25,8 @@ public class Book {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "auther")
-	private String auther;
+	@Column(name = "author")
+	private String author;
 	
 	@Column(name = "price")
 	private BigDecimal price;
@@ -73,12 +73,12 @@ public class Book {
 		this.name = name;
 	}
 
-	public String getAuther() {
-		return auther;
+	public String getAuthor() {
+		return author;
 	}
 
-	public void setAuther(String auther) {
-		this.auther = auther;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
 	public BigDecimal getPrice() {
