@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.antMatcher("/api/**")
+			.antMatcher("/api/security/**")
 				.authorizeRequests().anyRequest()
 				.hasAnyRole(ROLE.USER)
 			.and()
@@ -100,7 +100,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/v2/api-docs","/swagger.json", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**");
+        web.ignoring().antMatchers("/v2/api-docs",
+        		"/swagger.json", 
+        		"/configuration/ui", 
+        		"/swagger-resources", 
+        		"/configuration/security", 
+        		"/swagger-ui.html", 
+        		"/webjars/**");
     }
 	
 	@Bean

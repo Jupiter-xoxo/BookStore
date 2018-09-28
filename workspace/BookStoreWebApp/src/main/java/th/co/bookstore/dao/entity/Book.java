@@ -1,5 +1,6 @@
 package th.co.bookstore.dao.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,28 +11,28 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users")
-public class User {
-	
+@Table(name = "books")
+public class Book {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "username")
-	private String username;
-	
-	@Column(name = "password")
-	private String password;
+	@Column(name = "book_id")
+	private Integer bookId;
 	
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "surname")
-	private String surname;
+	@Column(name = "auther")
+	private String auther;
 	
-	@Column(name = "date_of_birth")
-	private Date dateOfBirth;
+	@Column(name = "price")
+	private BigDecimal price;
+	
+	@Column(name = "is_recommoned")
+	private String isRecommoned;
 	
 	@Column(name = "created_by")
 	private String createdBy;
@@ -56,20 +57,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public Integer getBookId() {
+		return bookId;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
 	}
 
 	public String getName() {
@@ -80,20 +73,28 @@ public class User {
 		this.name = name;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getAuther() {
+		return auther;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setAuther(String auther) {
+		this.auther = auther;
 	}
 
-	public Date getDateOfBirth() {
-		return dateOfBirth;
+	public BigDecimal getPrice() {
+		return price;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public String getIsRecommoned() {
+		return isRecommoned;
+	}
+
+	public void setIsRecommoned(String isRecommoned) {
+		this.isRecommoned = isRecommoned;
 	}
 
 	public String getCreatedBy() {
@@ -135,5 +136,5 @@ public class User {
 	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-
+	
 }

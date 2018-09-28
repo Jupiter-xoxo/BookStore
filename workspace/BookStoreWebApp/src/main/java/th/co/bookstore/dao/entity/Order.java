@@ -10,28 +10,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users")
-public class User {
-	
+@Table(name = "orders")
+public class Order {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "username")
-	private String username;
+	@Column(name = "user_id")
+	private Integer userId;
 	
-	@Column(name = "password")
-	private String password;
-	
-	@Column(name = "name")
-	private String name;
-	
-	@Column(name = "surname")
-	private String surname;
-	
-	@Column(name = "date_of_birth")
-	private Date dateOfBirth;
+	@Column(name = "transaction_id")
+	private Integer transactionId;
 	
 	@Column(name = "created_by")
 	private String createdBy;
@@ -56,44 +47,20 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
-	public String getPassword() {
-		return password;
+	public Integer getTransactionId() {
+		return transactionId;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setTransactionId(Integer transactionId) {
+		this.transactionId = transactionId;
 	}
 
 	public String getCreatedBy() {
