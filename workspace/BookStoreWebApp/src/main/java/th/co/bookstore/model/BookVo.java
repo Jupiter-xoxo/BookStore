@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class RestBookResponse {
+public class BookVo {
 
 	@JsonProperty("id")
 	private Integer id;
@@ -17,6 +17,9 @@ public class RestBookResponse {
 	
 	@JsonProperty("price")
 	private BigDecimal price;
+	
+	@JsonProperty("is_recommended")
+	private boolean isRecommended;
 
 	public Integer getId() {
 		return id;
@@ -50,10 +53,18 @@ public class RestBookResponse {
 		this.price = price;
 	}
 
+	public boolean isRecommended() {
+		return isRecommended;
+	}
+
+	public void setRecommended(boolean isRecommended) {
+		this.isRecommended = isRecommended;
+	}
+
 	@Override
 	public String toString() {
-		return "RestBookResponse [id=" + id + ", bookName=" + bookName + ", authorName=" + authorName + ", price="
-				+ price + "]";
+		return "BookVo [id=" + id + ", bookName=" + bookName + ", authorName=" + authorName + ", price=" + price
+				+ ", isRecommended=" + isRecommended + "]";
 	}
 	
 }

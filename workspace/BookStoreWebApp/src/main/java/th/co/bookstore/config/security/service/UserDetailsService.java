@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import th.co.bookstore.common.constant.ProjectConstants.FLAG;
 import th.co.bookstore.config.security.constant.SecurityConstants.ROLE;
 import th.co.bookstore.config.security.model.CustomUserPrincipal;
 import th.co.bookstore.dao.UserRepository;
@@ -31,10 +32,8 @@ public class UserDetailsService implements org.springframework.security.core.use
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		log.info("loadUserByUsername username={}", username);
 		CustomUserPrincipal customUserPrincipal = new CustomUserPrincipal();
-//		log.info("loadUserByUsername username={}, password={}", username);
-//		String pwd = encoder.encode("password");
 		
-		User user = userRepository.findByUsername(username);
+		User user = userRepository.findByUsernameAndIsDeleted(username, FLAG.N_FLAG);
 		
 		if (user == null) {
 			throw new UsernameNotFoundException(MessageFormat.format("Username {0} not found", username));

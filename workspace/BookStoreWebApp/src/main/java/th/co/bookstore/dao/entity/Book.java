@@ -31,7 +31,7 @@ public class Book {
 	@Column(name = "price")
 	private BigDecimal price;
 	
-	@Column(name = "is_recommoned")
+	@Column(name = "is_recommend")
 	private String isRecommoned;
 	
 	@Column(name = "created_by")
@@ -48,6 +48,7 @@ public class Book {
 	
 	@Column(name = "is_deleted")
 	private String isDeleted;
+	
 
 	public Integer getId() {
 		return id;

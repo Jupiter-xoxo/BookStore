@@ -37,7 +37,7 @@ public class UserService {
 	public GetUserResponse findByUsername(String username) {
 		log.info("get current username = {} ", username);
 		
-		User user = userRepository.findByUsername(username);
+		User user = userRepository.findByUsernameAndIsDeleted(username, FLAG.N_FLAG);
 		
 		GetUserResponse response = new GetUserResponse();
 		response.setName(user.getName());
@@ -71,8 +71,9 @@ public class UserService {
 		return response;
 	}
 	
+	@Transactional(value = TransactionManagerRef.MYSQl_DB, rollbackFor = Exception.class)
 	public void delete(DeleteUserRequest request, String username) throws Exception {
-		User user = userRepository.findByUsername(request.getUsername());
+		User user = userRepository.findByUsernameAndIsDeleted(username, FLAG.N_FLAG);
 		
 		if (user == null) {
 			throw new BusinessException(ERROR_MESSAGE.ERR0001_CODE, ERROR_MESSAGE.ERR0001_DESC);

@@ -1,13 +1,14 @@
 package th.co.bookstore.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.client.ClientHttpRequestFactory;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,18 +25,19 @@ public class RestApiBookService {
 	@Value("${rest.api.book.recommendation.url}")
 	private String restBookRecommonendUrl;
 	
-	public RestBookResponse callRestBookApi() throws Exception {
-		RestBookResponse response = new RestBookResponse();
+	@SuppressWarnings("unchecked")
+	public List<RestBookResponse> callRestBookApi() throws Exception {
+		RestBookResponse[] response = new RestBookResponse[] {};
 		try {
-			RestTemplate restTemplate = new RestTemplate(this.getClientHttpRequestFactory());
+			RestTemplate restTemplate = new RestTemplate();
 			long startTime = System.currentTimeMillis();
 			
 			log.info("callRestBookApi Url : {}", this.restBookUrl);
-		    HttpEntity<RestBookResponse> responseEntity = restTemplate.exchange(this.restBookUrl, HttpMethod.GET, null,RestBookResponse.class);
+		    HttpEntity<RestBookResponse[]> responseEntity = restTemplate.exchange(this.restBookUrl, HttpMethod.GET, null, RestBookResponse[].class);
 			response = responseEntity.getBody();
 
 			long endTime = System.currentTimeMillis();
-			log.info("callRestBookApi Completed Response Body  : {} Time : {} ms", response.toString(), (endTime - startTime));
+			log.info("callRestBookApi Completed Response Body  : {} Time : {} ms", responseEntity.getBody(), (endTime - startTime));
 		} catch(HttpClientErrorException ehttp) {
 			log.error("is ok ehttp status : {}, body : {} ", ehttp.getStatusCode(), ehttp.getResponseBodyAsString());
 			throw ehttp;
@@ -43,21 +45,22 @@ public class RestApiBookService {
 			log.error("exception callRestBookApi : ", e);
 			throw e;
 		}
-		return response;
+		return CollectionUtils.arrayToList(response);
 	}
 	
-	public RestBookResponse callRestBookRecommendationApi() throws Exception {
-		RestBookResponse response = new RestBookResponse();
+	@SuppressWarnings("unchecked")
+	public List<RestBookResponse> callRestBookRecommendationApi() throws Exception {
+		RestBookResponse[] response = new RestBookResponse[] {};
 		try {
-			RestTemplate restTemplate = new RestTemplate(this.getClientHttpRequestFactory());
+			RestTemplate restTemplate = new RestTemplate();
 			long startTime = System.currentTimeMillis();
 			
 			log.info("callRestBookRecommendationApi Url : {}", this.restBookRecommonendUrl);
-		    HttpEntity<RestBookResponse> responseEntity = restTemplate.exchange(this.restBookRecommonendUrl, HttpMethod.GET, null,RestBookResponse.class);
+		    HttpEntity<RestBookResponse[]> responseEntity = restTemplate.exchange(this.restBookRecommonendUrl, HttpMethod.GET, null, RestBookResponse[].class);
 			response = responseEntity.getBody();
 
 			long endTime = System.currentTimeMillis();
-			log.info("callRestBookRecommendationApi Completed Response Body  : {} Time : {} ms", response.toString(), (endTime - startTime));
+			log.info("callRestBookRecommendationApi Completed Response Body  : {} Time : {} ms", responseEntity.getBody(), (endTime - startTime));
 		} catch(HttpClientErrorException ehttp) {
 			log.error("is ok ehttp status : {}, body : {} ", ehttp.getStatusCode(), ehttp.getResponseBodyAsString());
 			throw ehttp;
@@ -65,13 +68,7 @@ public class RestApiBookService {
 			log.error("exception callRestBookApi : ", e);
 			throw e;
 		}
-		return response;
+		return CollectionUtils.arrayToList(response);
 	}
 	
-	private ClientHttpRequestFactory getClientHttpRequestFactory() {
-	    int timeout = 10000;
-	    HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory();
-	    clientHttpRequestFactory.setConnectTimeout(timeout);
-	    return clientHttpRequestFactory;
-	}
 }
