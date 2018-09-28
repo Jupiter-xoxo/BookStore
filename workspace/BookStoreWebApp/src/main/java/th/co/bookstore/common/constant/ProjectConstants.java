@@ -1,6 +1,6 @@
 package th.co.bookstore.common.constant;
 
-public class ProjectConstant {
+public class ProjectConstants {
 
 	public static class TransactionManagerRef {
 		public static final String MYSQl_DB = "mySqlTransactionManager";

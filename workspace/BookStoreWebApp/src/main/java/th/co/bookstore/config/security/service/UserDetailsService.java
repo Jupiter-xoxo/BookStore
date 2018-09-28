@@ -1,7 +1,5 @@
 package th.co.bookstore.config.security.service;
 
-import java.text.MessageFormat;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import th.co.bookstore.config.security.constant.SecurityConstants.ROLE;
 import th.co.bookstore.config.security.model.CustomUserPrincipal;
 import th.co.bookstore.dao.UserRepository;
 import th.co.bookstore.dao.entity.User;
@@ -22,7 +21,7 @@ public class UserDetailsService implements org.springframework.security.core.use
 
 	@Autowired
 	private PasswordEncoder encoder;
-	
+//	
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -30,6 +29,7 @@ public class UserDetailsService implements org.springframework.security.core.use
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		log.info("loadUserByUsername username={}", username);
 		CustomUserPrincipal customUserPrincipal = new CustomUserPrincipal();
+		log.info("loadUserByUsername username={}, password={}", username);
 		String pwd = encoder.encode("password");
 		customUserPrincipal.setUserName(username);
 		customUserPrincipal.setPassword(pwd);
@@ -42,7 +42,7 @@ public class UserDetailsService implements org.springframework.security.core.use
 //			throw new UsernameNotFoundException(MessageFormat.format("Username {0} not found", username));
 //		}
 		
-		SimpleGrantedAuthority role = new SimpleGrantedAuthority("ROLE_USER");
+		SimpleGrantedAuthority role = new SimpleGrantedAuthority(ROLE.USER);
 		customUserPrincipal.addRole(role);
 		customUserPrincipal.setFullName("test test");
 		

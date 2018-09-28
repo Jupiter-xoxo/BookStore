@@ -29,8 +29,8 @@ import springfox.documentation.spring.web.scanners.ApiDescriptionReader;
 import springfox.documentation.spring.web.scanners.ApiListingScanner;
 import springfox.documentation.spring.web.scanners.ApiListingScanningContext;
 import springfox.documentation.spring.web.scanners.ApiModelReader;
-import th.co.bookstore.common.constant.SecurityConstants.MODULE_NAME;
-import th.co.bookstore.common.constant.SecurityConstants.URL;
+import th.co.bookstore.config.security.constant.SecurityConstants.MODULE_NAME;
+import th.co.bookstore.config.security.constant.SecurityConstants.URL;
 
 public class FormLoginOperations extends ApiListingScanner {
 	

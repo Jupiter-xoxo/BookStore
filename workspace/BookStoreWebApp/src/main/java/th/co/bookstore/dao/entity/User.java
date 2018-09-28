@@ -25,7 +25,7 @@ public class User {
 	private String password;
 	
 	@Column(name = "date_of_birth")
-	private String dateOfBirth;
+	private Date dateOfBirth;
 	
 	@Column(name = "updated_by")
 	private String updatedBy;
@@ -57,11 +57,11 @@ public class User {
 		this.password = password;
 	}
 
-	public String getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 

@@ -21,9 +21,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import th.co.bookstore.common.constant.ProjectConstant.EntityFactoryRef;
-import th.co.bookstore.common.constant.ProjectConstant.JDBC_TEMPLATE;
-import th.co.bookstore.common.constant.ProjectConstant.TransactionManagerRef;
+import th.co.bookstore.common.constant.ProjectConstants.EntityFactoryRef;
+import th.co.bookstore.common.constant.ProjectConstants.JDBC_TEMPLATE;
+import th.co.bookstore.common.constant.ProjectConstants.TransactionManagerRef;
 
 @Configuration
 @EnableTransactionManagement

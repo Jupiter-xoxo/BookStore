@@ -1,4 +1,4 @@
-package th.co.bookstore.common.constant;
+package th.co.bookstore.config.security.constant;
 
 public class SecurityConstants {
 	

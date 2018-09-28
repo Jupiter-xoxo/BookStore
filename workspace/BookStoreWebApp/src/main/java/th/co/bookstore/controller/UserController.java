@@ -12,4 +12,9 @@ public class UserController {
 	public ResponseEntity<?> getAppTest() {
 		return new ResponseEntity<String>("Test Success", HttpStatus.OK);
 	}
+	
+	@GetMapping("/test")
+	public ResponseEntity<?> test() {
+		return new ResponseEntity<String>("Test Success1", HttpStatus.OK);
+	}
 }
