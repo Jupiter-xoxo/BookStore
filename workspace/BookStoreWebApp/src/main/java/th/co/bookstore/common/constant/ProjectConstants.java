@@ -13,4 +13,9 @@ public class ProjectConstants {
 	public static class JDBC_TEMPLATE {
 		public static final String MYSQL_DB = "mysqlJdbcTemplate";
 	}
+	
+	public static class STATUS {
+		public static final String SUCCESS = "succcess";
+		public static final String FAIL = "fail";
+	}
 }

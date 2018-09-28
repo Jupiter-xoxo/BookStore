@@ -78,7 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 	}
 	
-	// Basic authorize
+// Basic authorize
 //	@Override
 //	protected void configure(HttpSecurity http) throws Exception {
 //		http.antMatcher("/api/**")
