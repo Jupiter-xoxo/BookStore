@@ -14,5 +14,4 @@ Book Store
 1. MySql
 
 # Swagger 2
-1. Api Document with Swagger2
-Path : http://localhost:8080/swagger-ui.html 
+1. Api Document with Swagger2 (http://localhost:8080/swagger-ui.html) 
