@@ -11,7 +11,7 @@ Book Store
 3. Xampp
 
 # Database
-1. MySql
+MySql
 
 # Swagger 2
-1. Api Document with Swagger2 (http://localhost:8080/swagger-ui.html) 
+Api Document with Swagger2 (http://localhost:8080/swagger-ui.html) 
