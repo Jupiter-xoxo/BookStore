@@ -39,6 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Qualifier("wsAuthenticationProvider")
 	private AuthenticationProvider webServiceAuthenticationProvider;
 	
+//	@Autowired
+//	private CustomUserDetailsService customUserDetailsService;
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -53,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 //		auth.authenticationProvider(webServiceAuthenticationProvider);
+//		auth.userDetailsService(customUserDetailsService);
 		auth.inMemoryAuthentication().withUser("username").password("password").roles("USER");
 		auth.inMemoryAuthentication().withUser("john.doe").password("thisismysecret").roles("USER");
 	}
@@ -88,21 +92,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.csrf().disable();
 	}
-	
-// Basic authorize
-//	@Override
-//	protected void configure(HttpSecurity http) throws Exception {
-//		http.antMatcher("/api/**")
-//			.authorizeRequests().anyRequest()
-//			.hasAnyRole(ROLE.USER)
-//		.and()
-//		.authorizeRequests()
-//			.anyRequest().authenticated()
-//		.and()
-//		.httpBasic()
-//			.authenticationEntryPoint(restAuthenticationEntryPoint());
-//		http.csrf().disable();
-//	}
 	
 	@Override
     public void configure(WebSecurity web) throws Exception {
