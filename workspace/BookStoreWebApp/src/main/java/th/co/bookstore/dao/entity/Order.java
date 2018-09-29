@@ -22,7 +22,7 @@ public class Order {
 	private Integer userId;
 	
 	@Column(name = "transaction_id")
-	private Integer transactionId;
+	private String transactionId;
 	
 	@Column(name = "created_by")
 	private String createdBy;
@@ -55,11 +55,11 @@ public class Order {
 		this.userId = userId;
 	}
 
-	public Integer getTransactionId() {
+	public String getTransactionId() {
 		return transactionId;
 	}
 
-	public void setTransactionId(Integer transactionId) {
+	public void setTransactionId(String transactionId) {
 		this.transactionId = transactionId;
 	}
 

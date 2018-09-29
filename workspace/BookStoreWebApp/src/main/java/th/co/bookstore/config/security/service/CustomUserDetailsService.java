@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,9 @@ import th.co.bookstore.dao.UserRepository;
 import th.co.bookstore.dao.entity.User;
 
 @Service
-public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 	
-	private static final Logger log = LoggerFactory.getLogger(UserDetailsService.class);
+	private static final Logger log = LoggerFactory.getLogger(CustomUserDetailsService.class);
 
 	@Autowired
 	private PasswordEncoder encoder;
@@ -39,7 +40,7 @@ public class UserDetailsService implements org.springframework.security.core.use
 			throw new UsernameNotFoundException(MessageFormat.format("Username {0} not found", username));
 		}
 		
-		log.info("find username={}", user.getUsername());
+		log.debug("find username={}", user.getUsername());
 
 		customUserPrincipal.setUserName(user.getUsername());
 		customUserPrincipal.setPassword(encoder.encode(user.getPassword()));

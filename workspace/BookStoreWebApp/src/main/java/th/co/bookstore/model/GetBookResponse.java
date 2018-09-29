@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GetBookResponse {
 
 	@JsonProperty("books")
-	List<BookVo> books = new ArrayList<>();
+	private List<BookVo> books = new ArrayList<>();
 
 	public List<BookVo> getBooks() {
 		return books;

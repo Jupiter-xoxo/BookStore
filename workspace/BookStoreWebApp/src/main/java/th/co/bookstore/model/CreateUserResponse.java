@@ -1,10 +1,8 @@
 package th.co.bookstore.model;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PostUserRequest {
+public class CreateUserResponse {
 
 	@JsonProperty("username")
 	private String username;
@@ -13,7 +11,7 @@ public class PostUserRequest {
 	private String password;
 	
 	@JsonProperty("date_of_birth")
-	private Date dateOfBirth;
+	private String dateOfBirth;
 
 	public String getUsername() {
 		return username;
@@ -31,12 +29,12 @@ public class PostUserRequest {
 		this.password = password;
 	}
 
-	public Date getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-
+	
 }

@@ -16,6 +16,17 @@ public class CustomUserPrincipal implements UserDetails {
 	private List<SimpleGrantedAuthority> roles = new ArrayList<>();
 	private String fullName;
 	
+	public CustomUserPrincipal() {
+		super();
+	}
+
+	public CustomUserPrincipal(String userName, String password, List<SimpleGrantedAuthority> roles) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.roles = roles;
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return roles;

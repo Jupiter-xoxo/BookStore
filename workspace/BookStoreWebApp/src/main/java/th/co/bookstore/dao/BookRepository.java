@@ -11,4 +11,6 @@ import th.co.bookstore.dao.entity.Book;
 public interface BookRepository extends CrudRepository<Book, Integer> {
 
 	List<Book> findByIsDeleted(String isDeleted);
+	Book findByBookIdAndIsDeleted(Integer bookId, String isDeleted);
+	Book findById(Integer id);
 }

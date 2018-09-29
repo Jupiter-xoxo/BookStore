@@ -94,6 +94,7 @@ public class BookService {
 		
 		deleteBook();
 		
+		Date now = new Date();
 		for (BookVo bookVo : bookVos) {
 			Book book = new Book();
 			book.setBookId(bookVo.getId());
@@ -102,7 +103,9 @@ public class BookService {
 			book.setPrice(bookVo.getPrice());
 			book.setIsRecommoned(bookVo.isRecommended() ? FLAG.Y_FLAG : FLAG.N_FLAG);
 			book.setCreatedBy(ProjectConstants.SYSTEM);
-			book.setCreatedDate(new Date());
+			book.setCreatedDate(now);
+			book.setUpdatedBy(ProjectConstants.SYSTEM);
+			book.setUpdatedDate(now);
 			book.setIsDeleted(FLAG.N_FLAG);
 			
 			books.add(book);

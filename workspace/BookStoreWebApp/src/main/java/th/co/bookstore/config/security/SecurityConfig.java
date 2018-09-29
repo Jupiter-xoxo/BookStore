@@ -3,9 +3,11 @@ package th.co.bookstore.config.security;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -16,7 +18,6 @@ import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.security.web.savedrequest.NullRequestCache;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
@@ -34,6 +35,10 @@ import th.co.bookstore.config.security.handler.RestLogoutSuccessHandler;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	@Autowired
+	@Qualifier("wsAuthenticationProvider")
+	private AuthenticationProvider webServiceAuthenticationProvider;
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -44,6 +49,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public HttpSessionEventPublisher httpSessionEventPublisher() {
 	    return new HttpSessionEventPublisher();
 	}
+	
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.authenticationProvider(webServiceAuthenticationProvider);
+		auth.inMemoryAuthentication().withUser("username").password("password").roles("USER");
+		auth.inMemoryAuthentication().withUser("john.doe").password("thisismysecret").roles("USER");
+	}
+    
 	
 	/*
 	 * Rest Login API
@@ -69,8 +82,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint())
 			.and()
-			.requestCache().requestCache(new NullRequestCache())
-			.and()
 			.sessionManagement()
 				.maximumSessions(2)
 				.sessionRegistry(sessionRegistry());
@@ -92,11 +103,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //			.authenticationEntryPoint(restAuthenticationEntryPoint());
 //		http.csrf().disable();
 //	}
-
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("username").password("password").roles("USER");
-	}
 	
 	@Override
     public void configure(WebSecurity web) throws Exception {

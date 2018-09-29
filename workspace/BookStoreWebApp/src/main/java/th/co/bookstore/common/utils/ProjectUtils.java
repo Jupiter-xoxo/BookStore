@@ -5,6 +5,7 @@ import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.util.DigestUtils;
 
@@ -15,6 +16,11 @@ public class ProjectUtils {
 		return user.getName();
 	}
 	
+//	public static String getCurrentUsername(HttpServletRequest request) {
+//		CustomUserPrincipal user = (CustomUserPrincipal)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		return user.getUsername();
+//	}
+
 	public static String encryptMD5Password(String pwdstr) {
 		  
 		  String pwdStr  = null;
@@ -25,5 +31,9 @@ public class ProjectUtils {
 			e.printStackTrace();
 		}
 		  return pwdStr;
+	}
+	
+	public static String generateTransactionId(String seq) {
+		return String.format("T%s", StringUtils.leftPad(seq, 10, "0"));
 	}
 }

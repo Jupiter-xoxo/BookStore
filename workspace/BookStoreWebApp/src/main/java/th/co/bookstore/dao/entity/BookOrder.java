@@ -16,8 +16,8 @@ public class BookOrder {
 	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "user_id")
-	private Integer userId;
+	@Column(name = "order_id")
+	private Integer orderId;
 	
 	@Column(name = "book_id")
 	private Integer bookId;
@@ -30,12 +30,12 @@ public class BookOrder {
 		this.id = id;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public Integer getOrderId() {
+		return orderId;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
 	}
 
 	public Integer getBookId() {
